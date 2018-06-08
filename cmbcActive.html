@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>签约礼</title>
+  <link rel="stylesheet" href="./css/cmbcActive.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="cmbc_btnbg">
+      <img src="./images/cmbc_btnbg.png" alt="">
+      <div class="btn_info">
+        <h3>
+          <span class="money"></span> 元抵用券</h3>
+        <p>领取成功后</p>
+        <p>可在“我的钱包”里查看</p>
+        <div>
+          <button onclick="showMask()">立即领取</button>
+        </div>
+      </div>
+    </div>
+    <div class="ruleList">
+      <p>1、优惠一：点击APP左上角→我的钱包→无感支付→签约招行一卡通，即可获得
+        <span class="money"></span> 元优惠券礼包（含
+        <span class="num"></span>优惠券各一张），用户开通无感支付出停车场自动扣除，用一卡通主动支付则需手动选择使用优惠券，此优惠不与其他优惠同时享受。</p>
+      <p>2、优惠二：设置招行一卡通为无感支付的首选支付，每日驶出停车场首单无感支付享随机立减优惠2-10元，此优惠不与其他优惠同时享受。</p>
+      <p>3、优惠券仅限APP中显示支持线上支付的停车场使用，过期自动失效，不支持叠加使用。</p>
+      <p>4、活动期间如有疑问，请及时联系客服为您解决。</p>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="win-layer"></div>
+    <div class="win-container">
+      <div class="win-one">
+        <img src="./images/win-zindex4.png">
+      </div>
+      <div class="win-two">
+        <img src="./images/win-zindex3.png">
+      </div>
+      <div class="win-three">
+        <img src="./images/win-zindex2.png">
+      </div>
+      <div class="win-four">
+        <p>恭喜您领取成功
+          <Br>可在
+          <span onclick="goWallet()">“我的钱包”</span> 里查看</p>
+        <img src="./images/win.png">
+      </div>
+      <div class="win-left">
+        <img src="./images/win-left.png">
+      </div>
+      <div class="win-right">
+        <img src="./images/win-right.png">
+      </div>
+      <div class="win-close">
+        <img src="./images/win-close.png">
+      </div>
+    </div>
+  </div>
+  <!-- <div class="layer"></div>
+  <div class="tipMsg">
+    <p class="close_btn close">
+      <img onclick="closeRule()" src="./images/prompt@2x.png" alt="">
+    </p>
+    <div class="successMsg">
+      <p>您未绑定一卡通
+        <br>立即绑定一卡通，领取大礼包</p>
+    </div>
+    <div class="footer">
+      <span>取消</span>
+      <span>去绑定</span>
+    </div>
+  </div> -->
+</body>
+<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script src="./js/fontsize.js"></script>
+<script>
+  var mainurl = "http://spsapp.spsing.com",
+    // var mainurl = "http://192.168.1.112/SPS",
+    syscouponid = "",
+    islow = false //是否是安卓低版本   不是
+  var token = window.location.href.split("token=")[1]
+  // var token =
+  //   "74DC1C5F8BFDE976A29FD338FFB7FB7BBA3B2F65C332105B06CDFE592FF3058F60AAD400CF72D55C81A0F10ACC0750752994414052B33258E3DF2D8E0C883738"
+  getInfo()
+
+  function getInfo() {
+    $.ajax({
+      type: 'get',
+      url: mainurl + '/api/Activity/GetSigningCeremony?token=' + token,
+      success: function (data) {
+        if (data.Status == 1) {
+          var arr = data.Result
+          var num = 0
+          var str = ""
+          for (let i = 0; i < arr.length; i++) {
+            const element = arr[i].Price;
+            num = num + arr[i].Price
+            str += arr[i].Price + "元、"
+          }
+          $(".money").text(num)
+          $(".num").text(str.substr(0, str.length - 1))
+          if (navigator.userAgent.indexOf('Android') > 0) {
+            var phoneNum = navigator.userAgent.split('Android ')[1]
+            if (phoneNum.split('.')[0] <= 4) {
+              islow = true
+            } else {
+              islow = false
+            }
+          }
+        } else {
+          alert(data.Result)
+        }
+      },
+      error: function () {
+        alert("错误：请刷新重试")
+      }
+    });
+  };
+
+  // 领取弹框展示
+  function showMask() {
+    // $('body').css("overflow", "hidden")
+    // $(".layer").fadeIn();
+    // $(".tipMsg").fadeIn()
+    $.ajax({
+      type: 'get',
+      url: mainurl + '/api/Activity/UserReceiveCouponBySigningCeremony?token=' + token,
+      success: function (data) {
+        if (data.Status == 1) {
+          if (!islow) {
+            // $('body').css("overflow", "hidden")
+            // $(".layer").fadeIn();
+            // $(".tipMsg").fadeIn()
+            $('.win').show().addClass('winAn');
+            window.winheight = $('.win-four').height();
+            $('body').css({
+              'overflow': 'hidden'
+            });
+            var winH = winheight * 0.7 + 'px';
+            var winClose = winheight * 1.1 + 'px';
+            $('.win-four p').css({
+              "margin-top": winH
+            });
+            $('.win-close').css({
+              "margin-top": winClose
+            });
+          } else {
+            alert("领取成功")
+            getInfo()
+          }
+        } else {
+          alert(data.Result)
+        }
+      }.bind(this),
+      error: function () {
+        alert("错误：请刷新重试")
+      }
+    });
+  };
+
+  // 去我的钱包
+  function goWallet() {
+    window.location.href = "gomywallet.html"
+  }
+  // 点击关闭
+  $(".win-close img").click(function () {
+    $('body').css("overflow", "visible");
+    $(".win ").removeClass('winAn').fadeOut();
+    // 关闭
+    // window.location.href = "gotopark.html"
+  });
+</script>
+
+</html>

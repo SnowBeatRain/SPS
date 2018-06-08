@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  background-image: url(../images/cmbc_bg.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 108.65rem;
+  text-align: center;
+  position: relative;
+  font-family: "微软雅黑"
+}
+
+.cmbc_btnbg {
+  position: absolute;
+  top: 33%;
+  width: 78%;
+  left: 10%;
+}
+
+.cmbc_btnbg img {
+  width: 100%;
+}
+
+.btn_info {
+  position: absolute;
+  width: 100%;
+  top: 20%;
+}
+
+.btn_info h3 {
+  font-size: 1.95rem;
+  color: #f83146;
+}
+
+.btn_info h3 span {
+  font-size: 2.7rem;
+  color: #f83146;
+}
+
+.btn_info p {
+  font-size: 1.2rem;
+  color: #fd859f;
+  line-height: 2rem;
+}
+
+.btn_info div {
+  text-align: center;
+}
+
+.btn_info div button {
+  width: 15.025rem;
+  height: 4.5rem;
+  font-size: 1.7rem;
+  color: #fff;
+  border: none;
+  border-radius: 2.25rem;
+  margin-top: 1.2rem;
+  background: linear-gradient(#d83993, #fc395c);
+  background: -o-linear-gradient(#d83993, #fc395c);
+}
+
+/* 遮罩层 */
+
+.layer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #000;
+  opacity: 0.7;
+  display: none;
+}
+
+.tipMsg {
+  position: fixed;
+  top: 10%;
+  left: calc(50% - 15.5rem);
+  z-index: 150;
+  width: 30.1rem;
+  box-sizing: border-box;
+  border-radius: .5rem;
+  text-align: center;
+  background: #fff;
+  display: none;
+  padding-bottom: 2.5rem;
+}
+
+/* 遮罩层 */
+
+.win {
+  display: none;
+}
+
+.win-layer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #000;
+  opacity: 0.7;
+}
+
+.win-container {
+  position: fixed;
+  top: 20%;
+  left: 18%;
+  width: 64%;
+  z-index: 150;
+  text-align: center;
+}
+
+.win-left {
+  position: fixed;
+  top: 10%;
+  left: 0;
+  width: 100%;
+}
+
+.win-right {
+  position: fixed;
+  top: 10%;
+  right: 0;
+  width: 100%;
+}
+
+.win-one,
+.win-two,
+.win-three,
+.win-four {
+  position: fixed;
+  top: 20%;
+  left: 18%;
+  width: 64%;
+}
+
+.win-four p {
+  color: #fff;
+  position: fixed;
+  width: 60%;
+  left: 20%;
+  top: 20%;
+  font-size: 1.6rem;
+  color: #fff;
+  line-height: 2.5rem;
+}
+
+.win-one img,
+.win-two img,
+.win-three img,
+.win-four img,
+.win-left img,
+.win-right img {
+  width: 100%;
+  display: block;
+}
+
+.win-close {
+  position: fixed;
+  top: 20%;
+  height: 4rem;
+  width: 4rem;
+  left: calc(50% - 2rem);
+}
+
+.win-close img {
+  width: 100%;
+}
+
+.winAn .win-left {
+  animation: leftss 0.8s 1 ease-out, sss 1s infinite 0.3s;
+}
+
+.winAn .win-right {
+  animation: rightss 0.8s 1 ease-out, sss 1s infinite 0.3s;
+}
+
+.winAn .win-three {
+  animation: topsr 2s 1 ease-out;
+}
+
+.winAn .win-two {
+  animation: topss 2.5s 1 ease-out;
+}
+
+@keyframes leftss {
+  from {
+    left: -50%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes sss {
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translateY(-4px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translateY(4px);
+  }
+}
+
+@keyframes rightss {
+  from {
+    right: -50%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+@keyframes topsr {
+  0% {
+    top: 30%;
+  }
+  40% {
+    top: 30%;
+  }
+  80% {
+    top: 20%;
+  }
+  100% {
+    top: 20%;
+  }
+}
+
+@keyframes topss {
+  0% {
+    top: 30%;
+  }
+  50% {
+    top: 30%;
+  }
+  100% {
+    top: 20%;
+  }
+}
+
+.ruleList {
+  position: absolute;
+  bottom: 5rem;
+  width: 100%;
+  padding: 0 10%;
+  box-sizing: border-box;
+}
+
+.ruleList p {
+  font-size: 1.4rem;
+  color: #fff;
+  line-height: 2.1rem;
+  text-align: left;
+}

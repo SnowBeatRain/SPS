@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  background-image: url(../images/inviter_bg2.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 66.7rem;
+  text-align: center;
+  position: relative;
+  font-family: "微软雅黑"
+}
+
+.inviter_code {
+  display: inline-block;
+  margin-top: 35%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 8%;
+  width: 100%;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.inviter_code .code_title {
+  font-size: 3.5rem;
+  color: #fff;
+}
+
+.code_num {
+  font-size: 4.5rem;
+  color: #ffa922;
+  margin-top: 2rem;
+}
+
+.code_num span {
+  border-bottom: 1px solid #ffa922;
+}
+
+.qrCode {
+  width: 15.5rem;
+  height: 15.5rem;
+  border-radius: .5rem;
+  /* background-color: aqua; */
+  position: absolute;
+  bottom: 17.8%;
+  left: calc(50% - 7.1rem);
+}
+
+#qrCode img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#qrCode canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.logoQr {
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  bottom: calc(17.8% + 3rem);
+  left: calc(50% - 2rem);
+}
