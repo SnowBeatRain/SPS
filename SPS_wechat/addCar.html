@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>添加车辆</title>
+  <link rel="stylesheet" href="./css/addcar.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="tip">
+      请输入您的车牌号进行绑定
+    </div>
+    <div class="weiwuha" id="tables">
+      <div class="spanProvinceDescription weiwukuang wi selectwi" id="city">
+        浙</div>
+      <div class="spanCityDescription weiwukuang wi" id="area">
+        B</div>
+      <div class="spannum1 weiwukuang wi" id="are1">
+      </div>
+      <div class="spannum2 weiwukuang wi" id="are2">
+      </div>
+      <div class="spannum3 weiwukuang wi" id="are3">
+      </div>
+      <div class="spannum4 weiwukuang wi" id="are4">
+      </div>
+      <div class="spannum5 weiwukuang wi" id="are5">
+      </div>
+      <div id="xny" class="spannumn weiwukuang weiwukuang1 wi"></div>
+      <!-- <span class="add_icon">+</span>
+        <br>
+        <span class="new_energy">新能源</span> -->
+    </div>
+    <div class="btn">
+      <button>确定添加</button>
+    </div>
+    <div class="bd" style="width: 100%; bottom: 0px; position: absolute; background: #c7cfd6 !important;
+    z-index: 9999999;">
+      <div style="height: 3.6rem; width: 100%; background: white !important; color: #CE2F36;
+        line-height: 3.6rem;font-size: 1.6rem; text-align: right; cursor: pointer; display: none;" class="closes">
+        <div onclick="aa();" style="padding-right: 1.5rem;">
+          确定
+        </div>
+      </div>
+      <div class="weui_grids select_plate_cellcity" style="display: none">
+        <div style=" width:100%;">
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              浙
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              京
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              粤
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              津
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              晋
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              冀
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              黑
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              吉
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              辽
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              蒙
+            </p>
+          </a>
+        </div>
+        <div>
+          <!-- <a class="weuigrid" style=" width:1px; height:.5rem;margin-left:5%;">
+            <p></p>
+          </a> -->
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              苏
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              沪
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              皖
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              赣
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              鲁
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              豫
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              鄂
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              湘
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              闽
+            </p>
+          </a>
+        </div>
+        <div>
+          <!-- <a class="weuigrid " style=" width:1px; height:.5rem;margin-left:9%;">
+            <p></p>
+          </a> -->
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              桂
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              渝
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              琼
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              川
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              贵
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              云
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              藏
+            </p>
+          </a>
+        </div>
+        <div>
+          <!-- <a class="weuigrid " style=" width:1px; height:.5rem;margin-left:25.5%;">
+            <p></p>
+          </a> -->
+          <a href="javascript:void(0)" class="weuigrid weuigridoption">
+            <p class="weuigrid_label">
+              陕
+            </p>
+            <a href="javascript:void(0)" class="weuigrid weuigridoption">
+              <p class="weuigrid_label">
+                甘
+              </p>
+            </a>
+            <a href="javascript:void(0)" class="weuigrid weuigridoption">
+              <p class="weuigrid_label">
+                青
+              </p>
+            </a>
+            <a href="javascript:void(0)" class="weuigrid weuigridoption">
+              <p class="weuigrid_label">
+                宁
+              </p>
+            </a>
+            <a href="javascript:void(0)" class="weuigrid weuigridoption">
+              <p class="weuigrid_label">
+                新
+              </p>
+            </a>
+        </div>
+        <div class="delete_box">
+          <a href="javascript:void(0)" class="weuigrid weuigridoption delete">
+            <p class="weuigrid_label">
+              删
+            </p>
+          </a>
+        </div>
+      </div>
+
+      <div class="weui_grids select_plate_cell_area" style="display: none">
+        <div>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              0
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              1
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              2
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              3
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              4
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              5
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              6
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              7
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              8
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              9
+            </p>
+          </a>
+        </div>
+        <div>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              A
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              B
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              C
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              D
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              E
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              F
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              G
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              H
+            </p>
+          </a>
+          <!-- <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                <p class="weui_grid_label">
+                  I
+                </p>
+              </a> -->
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              J
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              K
+            </p>
+          </a>
+        </div>
+        <div>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              L
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              M
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              N
+            </p>
+          </a>
+          <!-- <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+                <p class="weui_grid_label">
+                  O
+                </p>
+              </a> -->
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              P
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              Q
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              R
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              S
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              T
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              U
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              V
+            </p>
+          </a>
+        </div>
+        <div class="bottom_box">
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              W
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              X
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              Y
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              Z
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              港
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              澳
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <p class="weui_grid_label">
+              学
+            </p>
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <!-- <p class="weui_grid_label">
+            </p> -->
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option">
+            <!-- <p class="weui_grid_label">
+            </p> -->
+          </a>
+          <a href="javascript:void(0)" class="weui_grid weui_grid_option deleteNum">
+            <p class="weui_grid_label">
+              删
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src="./js/fontsize.js"></script>
+<script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./js/addcar.js"></script>
+</html>

@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 1.2rem;
+  background-color: #F4F4F4;
+  font-family: "方正兰亭黑"
+}
+
+.tishi {
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+li {
+  list-style: none;
+  width: 100%;
+  height: 13rem;
+  border-radius: 1rem;
+  box-shadow: 0px .5rem .5rem #efefef;
+  background-color: #fff;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  padding: 1rem 2rem;
+}
+
+.right_text {
+  letter-spacing: .3rem;
+  text-align: right;
+  position: relative;
+}
+
+.right_text .tip_msg {
+  position: absolute;
+  top: -3rem;
+  right: -1rem;
+  box-sizing: border-box;
+  padding: .5rem 1rem;
+  text-align: center;
+  display: inline-block;
+  background-color: #fff;
+  z-index: 120;
+  border-radius: .3rem;
+  display: none;
+}
+
+.tip_bottom {
+  position: absolute;
+  top:100%;
+  left: 60%;
+  display: inline-block;
+  border-left: 3px solid transparent;
+  border-top: 6px solid #fff;
+  border-right: 3px solid transparent;
+}
+
+.right_text .tip_point {
+  padding: 0 .5rem;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.car_num {
+  line-height: 8rem;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+/* footer_btn */
+
+.footer_btn {
+  position: fixed;
+  bottom: 2rem;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  height: 4.2rem;
+  border-radius: .5rem;
+  font-size: 1.5rem;
+  border: none;
+  color: #fff;
+  background-color: #c8161d;
+}
+
+.layer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #000;
+  opacity: 0.7;
+  display: none;
+}
+
+.tipMsg {
+  position: fixed;
+  top: 17.5rem;
+  left: calc(50% - 16.25rem);
+  z-index: 150;
+  width: 32.5rem;
+  box-sizing: border-box;
+  border-radius: .5rem;
+  text-align: center;
+  background: #fff;
+  display: none;
+  /* padding-bottom: 2.5rem; */
+}
+
+/* 绑定弹框提示 */
+
+.prompt_icon {
+  padding: 1rem 0;
+  margin-top: 1.5rem;
+}
+
+.prompt_icon img {
+  width: 6rem;
+  height: 6rem;
+}
+
+.prompt_msg {
+  font-size: 1.6rem;
+  color: #333;
+  line-height: 2rem;
+  margin-bottom: 2rem;
+}
+
+.tipMsg .footer {
+  font-size: 1.7rem;
+  color: #c8161d;
+  border-top: 1px solid #d4d4d4;
+  line-height: 5.5rem;
+}
+
+.tipMsg .footer span {
+  display: inline-block;
+  width: 49.5%;
+}
+
+.tipMsg .footer span:nth-child(1) {
+  border-right: 1px solid #d4d4d4;
+  float: left;
+  color: #999;
+}

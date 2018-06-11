@@ -1,0 +1,98 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta name="author" content="SnowBeatRain">
+  <title>停车记录</title>
+  <link rel="stylesheet" href="./css/mycar.css">
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <p class="tishi">最多添加3个车牌</p>
+    <ul class="carList">
+      <li>
+        <div class="list_info">
+          <p class="right_text">
+            <span class="tip_point">···</span>
+            <span class="tip_msg">解除绑定
+              <span class="tip_bottom"></span>
+            </span>
+          </p>
+          <p class="car_num">浙B·0CC0C</p>
+        </div>
+      </li>
+      <li>
+        <div class="list_info">
+          <p class="right_text">
+            <span class="tip_point">···</span>
+            <span class="tip_msg">解除绑定
+              <span class="tip_bottom"></span>
+            </span>
+          </p>
+          <p class="car_num">浙B·0CC0C</p>
+        </div>
+      </li>
+    </ul>
+    <div class="footer_btn">
+      <button>添加车辆</button>
+    </div>
+    <div class="layer"></div>
+    <div class="tipMsg">
+      <p class="prompt_icon">
+        <img src="./img/prompt@2x.png" alt="">
+      </p>
+      <div class="prompt_msg">
+        <p>是否确认解绑</p>
+      </div>
+      <div class="footer">
+        <span onclick="cancel()">取消</span>
+        <span onclick="confirmBtn()">确定</span>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./js/fontsize.js"></script>
+<script>
+  $(function () {
+    var w = document.documentElement.clientWidth
+    // console.log(document.documentElement.clientHeight)
+    var c_h = $(window).height() - 3 * (w / 37.5)
+    $(".container").css({
+      "min-height": c_h + "px"
+    })
+
+    $(".right_text .tip_point").click(function () {
+      // 获取解除绑定 的节点元素
+      var jb = $(this).next()[0]
+      $(jb).fadeIn()
+      console.log()
+      $(".layer").fadeIn()
+    })
+    $(".layer").click(() => {
+      $(".layer").fadeOut()
+      $(".tip_msg").fadeOut()
+      $(".tipMsg").fadeOut()
+    })
+    $(".tip_msg").click(() => {
+      $(".tip_msg").fadeOut()
+      $(".tipMsg").fadeIn()
+    })
+
+
+  });
+
+  function cancel() {
+    $(".tipMsg").fadeOut()
+    $(".layer").fadeOut()
+  }
+  // 添加车辆
+  $(".footer_btn button").click(function(){
+    window.location.href = "addCar.html"
+  })
+</script>
+<html>

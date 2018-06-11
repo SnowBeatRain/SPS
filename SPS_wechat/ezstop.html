@@ -1,0 +1,198 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta name="author" content="SnowBeatRain">
+  <title>停车记录</title>
+  <link rel="stylesheet" href="./css/ezstop.css">
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="tab-contain">
+    <!-- tab栏 -->
+    <ul id="tabs">
+      <li class="current">
+        <a href="#" title="tab1">全部</a>
+      </li>
+      <li>
+        <a href="#" title="tab2">待出场</a>
+      </li>
+      <li>
+        <a href="#" title="tab3">已出场</a>
+      </li>
+    </ul>
+    <!-- 对应显示内容 -->
+    <div id="content">
+      <div id="tab1" class="item show">
+        <ul class="ezStopList">
+          <Li>
+            <div class="list_info">
+              <p class="info_top">
+                <img src="./img/car.png" alt="">
+                <span class="park_name">微软大厦停车场</span>
+                <span class="stop_status right">待出场</span>
+              </p>
+              <p class="info_bottom">
+                <img src="./img/car.png" alt="">
+                <span>浙B·99Q09</span>|
+                <span>停车1天4时44分</span>
+                <span class="price right">￥15.00</span>
+              </p>
+            </div>
+            <div class="list_btn">
+              <span class="type1">立即支付</span>
+            </div>
+          </Li>
+          <Li>
+            <div class="list_info">
+              <p class="info_top">
+                <img src="./img/car.png" alt="">
+                <span class="park_name">微软大厦停车场</span>
+                <span class="stop_status right">待出场</span>
+              </p>
+              <p class="info_bottom">
+                <img src="./img/car.png" alt="">
+                <span>浙B·99Q09</span>|
+                <span>停车1天4时44分</span>
+                <span class="price right">￥15.00</span>
+              </p>
+            </div>
+            <div class="list_btn">
+              <span class="type1">立即支付</span>
+            </div>
+          </Li>
+          <Li>
+            <div class="list_info">
+              <p class="info_top">
+                <img src="./img/car.png" alt="">
+                <span class="park_name">微软大厦停车场</span>
+                <span class="stop_status right">待出场</span>
+              </p>
+              <p class="info_bottom">
+                <img src="./img/car.png" alt="">
+                <span>浙B·99Q09</span>|
+                <span>停车1天4时44分</span>
+                <span class="price right">￥15.00</span>
+              </p>
+            </div>
+            <div class="list_btn">
+              <span class="type2">查看详情</span>
+            </div>
+          </Li>
+        </ul>
+      </div>
+      <div id="tab2" class="item">
+        <ul class="ezStopList">
+          <Li>
+            <div class="list_info">
+              <p class="info_top">
+                <img src="./img/car.png" alt="">
+                <span class="park_name">微软大厦停车场</span>
+                <span class="stop_status right">待出场</span>
+              </p>
+              <p class="info_bottom">
+                <img src="./img/car.png" alt="">
+                <span>浙B·99Q09</span>|
+                <span>停车1天4时44分</span>
+                <span class="price right">￥15.00</span>
+              </p>
+            </div>
+            <div class="list_btn">
+              <span class="type1">立即支付</span>
+            </div>
+          </Li>
+          <Li>
+            <div class="list_info">
+              <p class="info_top">
+                <img src="./img/car.png" alt="">
+                <span class="park_name">微软大厦停车场</span>
+                <span class="stop_status right">待出场</span>
+              </p>
+              <p class="info_bottom">
+                <img src="./img/car.png" alt="">
+                <span>浙B·99Q09</span>|
+                <span>停车1天4时44分</span>
+                <span class="price right">￥15.00</span>
+              </p>
+            </div>
+            <div class="list_btn">
+              <span class="type1">立即支付</span>
+            </div>
+          </Li>
+        </ul>
+      </div>
+      <div id="tab3" class="item">
+        <ul class="ezStopList">
+          <Li>
+            <div class="list_info">
+              <p class="info_top">
+                <img src="./img/car.png" alt="">
+                <span class="park_name">微软大厦停车场</span>
+                <span class="stop_status right">待出场</span>
+              </p>
+              <p class="info_bottom">
+                <img src="./img/car.png" alt="">
+                <span>浙B·99Q09</span>|
+                <span>停车1天4时44分</span>
+                <span class="price right">￥15.00</span>
+              </p>
+            </div>
+            <div class="list_btn">
+              <span class="type2">查看详情</span>
+            </div>
+          </Li>
+          <Li>
+            <div class="list_info">
+              <p class="info_top">
+                <img src="./img/car.png" alt="">
+                <span class="park_name">微软大厦停车场</span>
+                <span class="stop_status right">待出场</span>
+              </p>
+              <p class="info_bottom">
+                <img src="./img/car.png" alt="">
+                <span>浙B·99Q09</span>|
+                <span>停车1天4时44分</span>
+                <span class="price right">￥15.00</span>
+              </p>
+            </div>
+            <div class="list_btn">
+              <span class="type2">查看详情</span>
+            </div>
+          </Li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./js/fontsize.js"></script>
+<script>
+  $(function () {
+    $('#tabs a').click(function (e) {
+      e.preventDefault();
+      $('#tabs li').removeClass("current").removeClass("hoverItem");
+      $(this).parent().addClass("current");
+      $("#content div").removeClass("show");
+      $('#' + $(this).attr('title')).addClass('show');
+    });
+
+    $('#tabs a').hover(function () {
+      if (!$(this).parent().hasClass("current")) {
+        $(this).parent().addClass("hoverItem");
+      }
+    }, function () {
+      $(this).parent().removeClass("hoverItem");
+    });
+    var w = document.documentElement.clientWidth
+    // console.log(document.documentElement.clientHeight)
+    var c_h = $(window).height() - 3 * (w / 37.5)
+    $("#content").css({
+      "min-height": c_h + "px"
+    })
+
+  });
+</script>
+<html>

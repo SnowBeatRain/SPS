@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta name="author" content="SnowBeatRain">
+  <title>停车缴费</title>
+  <link rel="stylesheet" href="./css/payfees.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="car_list">
+      <div class="list">
+        <div class="top">
+          <p>浙B·999Q9</p>
+          <p>微软大厦停车场</p>
+          <p>
+            <span style="font-size: 2.35rem">￥</span>0.00</p>
+          <p>00:04:04</p>
+        </div>
+        <div class="bottom">
+          <button>去缴费</button>
+        </div>
+      </div>
+      <div class="list">
+          <div class="top">
+            <p>浙B·999Q9</p>
+            <p>微软大厦停车场</p>
+            <p>
+              <span style="font-size: 2.35rem">￥</span>0.00</p>
+            <p>00:04:04</p>
+          </div>
+          <div class="bottom">
+            <button>去缴费</button>
+          </div>
+        </div>
+    </div>
+    <div class="footer_msg">
+      <p>更快的进出体验，更全的停车服务，尽在SPS停车APP</p>
+      <p class="godown">去下载！</p>
+    </div>
+  </div>
+</body>
+<script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./js/fontsize.js"></script>
+<script>
+  var w = document.documentElement.clientWidth
+  var c_h = $(window).height()
+  $(".container").css({
+    "min-height": c_h + "px"
+  })
+</script>
+<html>
