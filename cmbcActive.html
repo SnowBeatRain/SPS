@@ -62,7 +62,7 @@
       </div>
     </div>
   </div>
-  <div class="layer"></div>
+  <!-- <div class="layer"></div>
   <div class="tipMsg">
     <p class="prompt_icon">
       <img src="./images/prompt@2x.png" alt="">
@@ -75,7 +75,7 @@
       <span onclick="IKnow()">知道了</span>
       <span onclick="goToBind()">去绑定</span>
     </div>
-  </div>
+  </div> -->
 </body>
 <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
 <script src="./js/fontsize.js"></script>
@@ -149,14 +149,14 @@
             alert("领取成功")
             getInfo()
           }
-        } else if (data.Status == 40034) {
-          if (!islow) {
-            $('body').css("overflow", "hidden")
-            $(".layer").fadeIn();
-            $(".tipMsg").fadeIn()
-          } else {
-            alert("您未绑定一卡通")
-          }
+          // } else if (data.Status == 40034) {
+          // if (!islow) {
+          //   $('body').css("overflow", "hidden")
+          //   $(".layer").fadeIn();
+          //   $(".tipMsg").fadeIn()
+          // } else {
+          // alert("您未绑定一卡通")
+          // }
         } else {
           alert(data.Result)
         }
@@ -175,7 +175,7 @@
   }
   // 去绑定一卡通
   function goToBind() {
-    window.location.href = "gotobind.html"
+    // window.location.href = "gotobind.html"
   }
   // 去我的钱包
   function goWallet() {
