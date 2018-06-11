@@ -79,10 +79,10 @@
 
 .tipMsg {
   position: fixed;
-  top: 10%;
-  left: calc(50% - 15.5rem);
+  top: 17.5rem;
+  left: calc(50% - 16.25rem);
   z-index: 150;
-  width: 30.1rem;
+  width: 32.5rem;
   box-sizing: border-box;
   border-radius: .5rem;
   text-align: center;
@@ -267,11 +267,12 @@
 }
 /* 未绑定一卡通弹框提示 */
 .prompt_icon{
-  padding: 2rem 0;
+  padding: 1rem 0;
+  margin-top: 1.5rem;
 }
 .prompt_icon img{
-  width: 5rem;
-  height:5rem;
+  width: 6rem;
+  height:6rem;
 }
 .prompt_msg{
   font-size: 1.6rem;
@@ -280,15 +281,17 @@
   margin-bottom: 2rem;
 }
 .tipMsg .footer{
-  font-size: 1.8rem;
-  border-top: 1px solid #999;
-  line-height: 5rem;
+  font-size: 1.7rem;
+  color:#c8161d;
+  border-top: 1px solid #d4d4d4;
+  line-height: 5.5rem;
 }
 .tipMsg .footer span{
   display: inline-block;
   width: 49.5%;
 }
 .tipMsg .footer span:nth-child(1){
-  border-right: 1px solid #999;
+  border-right: 1px solid #d4d4d4;
   float: left;
+  color:#999;
 }

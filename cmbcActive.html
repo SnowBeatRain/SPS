@@ -72,8 +72,8 @@
         <br>立即绑定一卡通，领取大礼包</p>
     </div>
     <div class="footer">
-      <span>知道了</span>
-      <span>去绑定</span>
+      <span onclick="IKnow()">知道了</span>
+      <span onclick="goToBind()">去绑定</span>
     </div>
   </div>
 </body>
@@ -87,7 +87,7 @@
   var token = window.location.href.split("token=")[1]
   // var token =
   //   "74DC1C5F8BFDE976A29FD338FFB7FB7BBA3B2F65C332105B06CDFE592FF3058F60AAD400CF72D55C81A0F10ACC0750752994414052B33258E3DF2D8E0C883738"
-  // getInfo()
+  getInfo()
 
   function getInfo() {
     $.ajax({
@@ -124,21 +124,14 @@
   };
 
 
-    $('body').css("overflow", "hidden")
-    $(".layer").fadeIn();
-    $(".tipMsg").fadeIn()
   // 领取弹框展示
   function showMask() {
-
     $.ajax({
       type: 'get',
       url: mainurl + '/api/Activity/UserReceiveCouponBySigningCeremony?token=' + token,
       success: function (data) {
         if (data.Status == 1) {
           if (!islow) {
-            // $('body').css("overflow", "hidden")
-            // $(".layer").fadeIn();
-            // $(".tipMsg").fadeIn()
             $('.win').show().addClass('winAn');
             window.winheight = $('.win-four').height();
             $('body').css({
@@ -156,6 +149,14 @@
             alert("领取成功")
             getInfo()
           }
+        } else if (data.Status == 40034) {
+          if (!islow) {
+            $('body').css("overflow", "hidden")
+            $(".layer").fadeIn();
+            $(".tipMsg").fadeIn()
+          } else {
+            alert("您未绑定一卡通")
+          }
         } else {
           alert(data.Result)
         }
@@ -166,6 +167,16 @@
     });
   };
 
+  // 取消：
+  function IKnow() {
+    $('body').css("overflow", "visible");
+    $(".layer").fadeOut();
+    $(".tipMsg").fadeOut()
+  }
+  // 去绑定一卡通
+  function goToBind() {
+    window.location.href = "gotobind.html"
+  }
   // 去我的钱包
   function goWallet() {
     window.location.href = "gomywallet.html"
