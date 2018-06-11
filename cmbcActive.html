@@ -62,20 +62,20 @@
       </div>
     </div>
   </div>
-  <!-- <div class="layer"></div>
+  <div class="layer"></div>
   <div class="tipMsg">
-    <p class="close_btn close">
-      <img onclick="closeRule()" src="./images/prompt@2x.png" alt="">
+    <p class="prompt_icon">
+      <img src="./images/prompt@2x.png" alt="">
     </p>
-    <div class="successMsg">
+    <div class="prompt_msg">
       <p>您未绑定一卡通
         <br>立即绑定一卡通，领取大礼包</p>
     </div>
     <div class="footer">
-      <span>取消</span>
+      <span>知道了</span>
       <span>去绑定</span>
     </div>
-  </div> -->
+  </div>
 </body>
 <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
 <script src="./js/fontsize.js"></script>
@@ -87,7 +87,7 @@
   var token = window.location.href.split("token=")[1]
   // var token =
   //   "74DC1C5F8BFDE976A29FD338FFB7FB7BBA3B2F65C332105B06CDFE592FF3058F60AAD400CF72D55C81A0F10ACC0750752994414052B33258E3DF2D8E0C883738"
-  getInfo()
+  // getInfo()
 
   function getInfo() {
     $.ajax({
@@ -123,11 +123,13 @@
     });
   };
 
+
+    $('body').css("overflow", "hidden")
+    $(".layer").fadeIn();
+    $(".tipMsg").fadeIn()
   // 领取弹框展示
   function showMask() {
-    // $('body').css("overflow", "hidden")
-    // $(".layer").fadeIn();
-    // $(".tipMsg").fadeIn()
+
     $.ajax({
       type: 'get',
       url: mainurl + '/api/Activity/UserReceiveCouponBySigningCeremony?token=' + token,

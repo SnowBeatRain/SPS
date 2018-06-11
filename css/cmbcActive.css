@@ -88,7 +88,7 @@
   text-align: center;
   background: #fff;
   display: none;
-  padding-bottom: 2.5rem;
+  /* padding-bottom: 2.5rem; */
 }
 
 /* 遮罩层 */
@@ -264,4 +264,31 @@
   color: #fff;
   line-height: 2.1rem;
   text-align: left;
+}
+/* 未绑定一卡通弹框提示 */
+.prompt_icon{
+  padding: 2rem 0;
+}
+.prompt_icon img{
+  width: 5rem;
+  height:5rem;
+}
+.prompt_msg{
+  font-size: 1.6rem;
+  color: #333;
+  line-height: 2rem;
+  margin-bottom: 2rem;
+}
+.tipMsg .footer{
+  font-size: 1.8rem;
+  border-top: 1px solid #999;
+  line-height: 5rem;
+}
+.tipMsg .footer span{
+  display: inline-block;
+  width: 49.5%;
+}
+.tipMsg .footer span:nth-child(1){
+  border-right: 1px solid #999;
+  float: left;
 }
