@@ -6,7 +6,8 @@
 .container {
   padding: 1.2rem;
   background-color: #F4F4F4;
-  font-family: "方正兰亭黑"
+  font-family: "方正兰亭黑";
+  box-sizing: border-box;
 }
 
 .tishi {
