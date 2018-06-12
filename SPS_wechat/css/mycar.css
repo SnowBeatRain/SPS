@@ -73,11 +73,12 @@ li {
 /* footer_btn */
 
 .footer_btn {
-  position: fixed;
+  /* position: absolute;
   bottom: 2rem;
-  left: 0;
+  left: 0; */
   width: 100%;
   padding: 2rem;
+  margin-top: 20rem;
   box-sizing: border-box;
 }
 

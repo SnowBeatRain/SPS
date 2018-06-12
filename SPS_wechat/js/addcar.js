@@ -1,6 +1,6 @@
 var h = $(window).innerHeight();
-$('.container').height(h)
-
+var w = $(window).innerWidth()
+$('.container').css({ 'min-height': h })
 // 定义一个num 用于记录是第几个输入值  初始值-1 
 /*
 0 城市  1 市区字母  2--1  3--2  4--3  5--4  6--5   7---6 新能源
