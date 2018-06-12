@@ -21,7 +21,7 @@
     </div>
     <div class="qrCode">
       <div id="qrCode"></div>
-      <img class="logoQr" src="./images/logo.png" alt="">
+      <img class="logoQr" style="z-index:50;" src="./images/logo.png" alt="">
     </div>
     <div class="footer">
       <p>识别二维码完成注册
@@ -33,13 +33,19 @@
 <script src="./js/fontsize.js"></script>
 <script type="text/javascript" src="./js/jquery.qrcode.min.js"></script>
 <!-- // 生成带logo二维码需要引入的js -->
-<!-- <script type="text/javascript" src="./js/utf.js"></script> -->
-<!-- <script src="./js/qrcode_logo.js"></script> -->
+<!-- <script type="text/javascript" src="./js/utf.js"></script>
+<script src="./js/qrcode_logo.js"></script> -->
 <script>
   var mainurl = "http://spsapp.spsing.com";
-  // var token = window.location.href.split("token=")[1]
-  var token =
-    "74DC1C5F8BFDE976A29FD338FFB7FB7BBA3B2F65C332105B06CDFE592FF3058F60AAD400CF72D55C81A0F10ACC0750752994414052B33258E3DF2D8E0C883738"
+  var token;
+  // var token =
+  //   "74DC1C5F8BFDE976A29FD338FFB7FB7BBA3B2F65C332105B06CDFE592FF3058F60AAD400CF72D55C81A0F10ACC0750752994414052B33258E3DF2D8E0C883738"
+  // 微信分享后 自动追加&form参数，判断截取掉
+  if (window.location.href.indexOf('&') > 0) {
+    token = window.location.href.split("token=")[1].split('&')[0]
+  } else {
+    token = window.location.href.split("token=")[1]
+  }
   getInfo()
 
   function getInfo() {
@@ -49,29 +55,26 @@
       success: function (data) {
         if (data.Status == 1) {
           $(".num").text(data.Result)
-            jQuery('#qrCode').qrcode({
-              render: "canvas", //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
-              text: "http://spsapp.spsing.com/content/activity/cmbc/inviteRegister.html?code=" + data.Result, //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
-              width: "200", //二维码的宽度
-              height: "200", //二维码的高度
-              background: "#ffffff", //二维码的后景色
-              foreground: "#FFA922", //二维码的前景色
-              src: 'images/logo.png' //二维码中间的图片
-            });
-          // //从 canvas 提取图片 image
+          jQuery('#qrCode').qrcode({
+            render: "canvas", //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
+            text: "http://spsapp.spsing.com/content/activity/cmbc/inviteRegister.html?code=" + data.Result, //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
+            width: "200", //二维码的宽度
+            height: "200", //二维码的高度
+            background: "#ffffff", //二维码的后景色
+            foreground: "#FFA922", //二维码的前景色
+            src: 'logo.png' //二维码中间的图片
+          });
+          //从 canvas 提取图片 image
           function convertCanvasToImage(canvas) {
             //新Image对象，可以理解为DOM
             var image = new Image();
-            // canvas.toDataURL 返回的是一串Base64编码的URL，当然,浏览器自己肯定支持
-            // 指定格式 PNG
             image.src = canvas.toDataURL("image/png");
             return image;
           }
-          //获取网页中的canvas对象
           var mycanvas1 = document.getElementsByTagName('canvas')[0];
           //将转换后的img标签插入到html中
           var img = convertCanvasToImage(mycanvas1);
-          $('#qrCode').html(img); //imagQrDiv表示你要插入的容器id
+          $('#qrCode').html(img);
         } else {
           alert(data.Result)
         }
