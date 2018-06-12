@@ -5,7 +5,7 @@
 
 .container {
   background-color: #F4F4F4;
-  font-family: "方正兰亭黑"
+  font-family: "方正兰亭黑";
 }
 
 /*  */
@@ -26,19 +26,24 @@
 
 .car_list {
   overflow-x: scroll;
-  padding: 4rem 0 4rem 4rem;
+  padding: 4rem 0 4rem 3rem;
+  box-sizing: border-box;
   display: flex;
   /* flex-wrap: nowrap; */
   background-color: #F4F4F4;
+  -webkit-overflow-scrolling: touch;
 }
-
 
 .car_list .list {
   text-align: center;
-  width: 30rem!important;
+  width: 30rem !important;
   margin-right: 2rem;
   border-radius: 1rem;
   box-shadow: 2px 2px 2px #eee;
+}
+
+.car_list:last-child {
+  margin-right: 4rem !important;
 }
 
 .top {
