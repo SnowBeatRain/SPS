@@ -16,14 +16,14 @@
 .top_title {
   color: #333;
   line-height: 3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.6rem;
 }
 .form{
   border-bottom: 1px solid #bfbfbf;
 }
 .bottom{
   height: 4.4rem;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
   line-height: 4.4rem;
 }
 .bottom .left{
@@ -82,7 +82,7 @@ input:focus { outline: none; }
 }
 .footer {
   width: 100%;
-  margin-top: 8.8rem;
+  margin-top: 10rem;
 }
 
 .footer button {
