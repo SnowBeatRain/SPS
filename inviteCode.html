@@ -5,12 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>邀请</title>
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <title>我的这些朋友们，竟然在免费停车？！</title>
+  <meta name="description" content="不用再辛苦排队找停车场了，SPS停车场三秒帮你找到停车位！">
+  <link rel="icon" href="images/logo1.png">
   <link rel="stylesheet" href="./css/inviteCode.css">
 </head>
 
 <body>
   <div class="container">
+    <div style="display: none;">
+      <img src="./images/logo1.png" style="width: 300px;height: 300px;" alt="">
+    </div>
     <div class="inviter_code">
       <div class="code_title">
         邀请码
@@ -35,6 +41,10 @@
 <!-- // 生成带logo二维码需要引入的js -->
 <!-- <script type="text/javascript" src="./js/utf.js"></script>
 <script src="./js/qrcode_logo.js"></script> -->
+<!-- w微信分享 -->
+<script src="./js/wxbanse.js"></script>
+<script src="./js/sha1.js"></script>
+<script src="./js/wx.js"></script>
 <script>
   var mainurl = "http://spsapp.spsing.com";
   var token;
@@ -84,6 +94,44 @@
       }
     });
   };
+  wx.ready(function () {
+    wx.hideMenuItems({
+      menuList: [
+        "menuItem:share:qq",
+        "menuItem:share:QZone",
+        "menuItem:favorite",
+        "menuItem:openWithQQBrowser",
+        "menuItem:openWithSafari",
+        "menuItem:share:email"
+      ]
+    });
+    // 分享
+    wx.onMenuShareTimeline({
+      title: "我的这些朋友们，竟然在免费停车？！", // 分享标题
+      link: "http://spsapp.spsing.com/content/activity/cmbc/inviteCode.html?token=" + token, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: "http://spsapp.spsing.com/content/activity/cmbc/images/logo1.png", // 分享图标
+      success: function () {
+        // alert("分享成功");
+      },
+      cancel: function () {
+        // alert("分享失败");
+      }
+    });
+    wx.onMenuShareAppMessage({
+      title: "我的这些朋友们，竟然在免费停车？！", // 分享标题
+      desc: "不用再辛苦排队找停车场了，SPS停车场三秒帮你找到停车位！", // 分享
+      link: "http://spsapp.spsing.com/content/activity/cmbc/inviteCode.html?token=" + token, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: "http://spsapp.spsing.com/content/activity/cmbc/images/logo1.png", // 分享图标
+      type: "", // 分享类型,music、video或link，不填默认为link
+      dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
+      success: function () {
+        // alert("分享成功");
+      },
+      cancel: function () {
+        // alert("分享失败");
+      }
+    });
+  });
 </script>
 
 </html>
