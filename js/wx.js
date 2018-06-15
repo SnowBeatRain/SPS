@@ -15,23 +15,24 @@ createCode();
 // $.ajax({
 // 	type: 'get',
 // 	url: 'http://spscs.spsing.cn/WeiXinApi/TargetedValue',
-// 	dataType:'jsonp',  
+// 	// header:{'Access-Control-Allow-Origin':'*'},
 // 	success: function (data) {
 // 		console.log(data)
 // 	// bkl(data.split(":")[2].split(",")[0])
 
 // 	},
 // 	error: function () {
-// 		alert("错误：请刷新重试")
+// 		console.log("错误：请刷新重试")
 // 	}
 // });
+// bkl("HoagFKDcsGMVCIY2vOjf9qxT6C3IsWGm3xCGqtv7ixE4-o4d3ju_OMBGWrX8zROrALQTAkCpgOuwZ0h-TkqW6Q")
 function bkl(ticket) {
 	var timestamp1 = Date.parse(new Date());
 	signature = "jsapi_ticket=" + ticket + "&noncestr=" + nonceStr + "&timestamp=" + timestamp1 + "&url=" + pageurl
 	signature = hex_sha1(signature);
 	wx.config({
 		debug: false,
-		appId: 'wx0b024f521540d37e',
+		appId: 'wxc7b5bc90e7748a73',
 		timestamp: timestamp1,
 		nonceStr: nonceStr,
 		signature: signature,
@@ -47,8 +48,30 @@ function bkl(ticket) {
 			'hideAllNonBaseMenuItem',
 			'showAllNonBaseMenuItem',
 			'translateVoice',
+			'startRecord',
+			'stopRecord',
+			'onVoiceRecordEnd',
+			'playVoice',
+			'onVoicePlayEnd',
+			'pauseVoice',
+			'stopVoice',
+			'uploadVoice',
+			'downloadVoice',
+			'chooseImage',
+			'previewImage',
+			'uploadImage',
+			'downloadImage',
+			'getNetworkType',
+			'openLocation',
+			'getLocation',
 			'hideOptionMenu',
 			'showOptionMenu',
+			'closeWindow',
+			'scanQRCode',
+			'chooseWXPay',
+			'openProductSpecificView',
+			'addCard',
+			'chooseCard',
 			'openCard'
 		],
 	});

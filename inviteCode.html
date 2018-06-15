@@ -111,10 +111,10 @@
       link: "http://spsapp.spsing.com/content/activity/cmbc/inviteCode.html?token=" + token, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: "http://spsapp.spsing.com/content/activity/cmbc/images/logo1.png", // 分享图标
       success: function () {
-        // alert("分享成功");
+        alert("分享成功");
       },
       cancel: function () {
-        // alert("分享失败");
+        alert("分享失败");
       }
     });
     wx.onMenuShareAppMessage({
@@ -125,10 +125,10 @@
       type: "", // 分享类型,music、video或link，不填默认为link
       dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
       success: function () {
-        // alert("分享成功");
+        alert("分享成功");
       },
       cancel: function () {
-        // alert("分享失败");
+        alert("分享失败");
       }
     });
   });

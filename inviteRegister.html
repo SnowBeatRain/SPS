@@ -129,17 +129,17 @@
           }, 1000);
         }
         // 获取验证嘛
-        // $.ajax({
-        //   type: "get",
-        //   url: mainurl + "/api/VerifyCode/Send?phone=" + phone,
-        //   success: function (data) {
-        //     if (data.Status == 1) {
-        //       alert(data.Result);
-        //     } else {
-        //       alert(data.Result);
-        //     }
-        //   }
-        // });
+        $.ajax({
+          type: "get",
+          url: mainurl + "/api/VerifyCode/Send?phone=" + phone,
+          success: function (data) {
+            if (data.Status == 1) {
+              alert(data.Result);
+            } else {
+              alert(data.Result);
+            }
+          }
+        });
       }
       new invokeSettime("#btn");
     }
