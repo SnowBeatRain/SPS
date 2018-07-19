@@ -4,9 +4,72 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
   <meta name="author" content="SnowBeatRain">
-  <title>账号注册</title>
+  <title>登录</title>
   <link rel="stylesheet" href="./css/login.css">
   <style>
+    /* 遮罩层 */
+
+    .layer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      background-color: #000;
+      opacity: 0.7;
+      display: none;
+    }
+
+    .tipMsg {
+      position: fixed;
+      top: 17.5rem;
+      left: calc(50% - 16.25rem);
+      z-index: 150;
+      width: 32.5rem;
+      box-sizing: border-box;
+      border-radius: .5rem;
+      text-align: center;
+      background: #fff;
+      display: none;
+    }
+
+    /* 未绑定一卡通弹框提示 */
+
+    .prompt_icon {
+      padding: 1rem 0;
+      margin-top: 1.5rem;
+    }
+
+    .prompt_icon img {
+      width: 6rem;
+      height: 6rem;
+    }
+
+    .prompt_msg {
+      font-size: 1.6rem;
+      color: #333;
+      line-height: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .tipMsg .lay_footer {
+      font-size: 1.7rem;
+      color: #c8161d;
+      border-top: 1px solid #d4d4d4;
+      line-height: 5.5rem;
+    }
+
+    .tipMsg .lay_footer span {
+      display: inline-block;
+      width: 49.5%;
+    }
+
+    .tipMsg .lay_footer span:nth-child(1) {
+      border-right: 1px solid #d4d4d4;
+      float: left;
+      color: #999;
+    }
   </style>
 </head>
 
@@ -22,30 +85,34 @@
     <div class="form form_code">
       <p class="top_title">验证码</p>
       <p class="bottom">
-        <input type="text" class="code left" placeholder="四位">
-        <span class="right get_code" id="btn" onclick="getYZ()">获取验证码</span>
+        <input type="number" class="code left" placeholder="四位" oninput="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');">
+        <input type="button" class="right get_code" id="btn" onclick="getYZ()" value="获取验证码">
       </p>
     </div>
     <div class="footer">
       <button onclick="submitBtn()">登录</button>
     </div>
+    <div class="layer"></div>
+    <div class="tipMsg">
+      <p class="prompt_icon">
+        <img src="./img/prompt@2x.png" alt="">
+      </p>
+      <div class="prompt_msg">
+        <p>您未注册，是否立即注册</p>
+      </div>
+      <div class="lay_footer">
+        <span onclick="IKnow()">取消</span>
+        <span onclick="goToBind()">确定</span>
+      </div>
+    </div>
   </div>
 </body>
 <script src="./js/jquery-1.11.0.min.js"></script>
 <script src="./js/fontsize.js"></script>
+<script src="./layer/layer.js"></script>
+
 <script>
   $(function () {
-    var openEye = false
-    $(".closeImg").click(function () {
-      openEye = !openEye;
-      if (openEye) {
-        $(".psw").attr("type", "text")
-        $(".closeImg").attr("src", "./img/eye_open.png")
-      } else {
-        $(".psw").attr("type", "password")
-        $(".closeImg").attr("src", "./img/eye_close.png")
-      }
-    })
     // 设置默认高度
     var w = document.documentElement.clientWidth
     var c_h = $(window).height()
@@ -71,9 +138,9 @@
   function getYZ() {
     var phone = $(".phone").val().trim();
     if (phone == "") {
-      alert("请输入手机号");
+      layer.msg('请输入手机号');
     } else if (!/^1\d{10}$/.test(phone)) {
-      alert("请检查手机号");
+      layer.msg("请检查手机号");
     } else {
       var countdown = 60;
 
@@ -83,7 +150,7 @@
         function settime(obj) {
           if (countdown == 0) {
             $(obj).attr("disabled", false);
-            $(obj).html("获取验证码");
+            $(obj).val("获取验证码");
             $(obj).css({
               'background-color': '#ffa922;'
             })
@@ -91,7 +158,7 @@
             return;
           } else {
             $(obj).attr("disabled", true);
-            $(obj).html("重新获取(" + countdown + ")");
+            $(obj).val("重新获取(" + countdown + ")");
             $(obj).css({
               'background-color': '#9f9f9f'
             })
@@ -102,31 +169,83 @@
           }, 1000);
         }
         // 获取验证嘛
-        // $.ajax({
-        //   type: "get",
-        //   url: mainurl + "/api/VerifyCode/Send?phone=" + phone,
-        //   success: function (data) {
-        //     if (data.Status == 1) {
-        //       alert(data.Result);
-        //     } else {
-        //       alert(data.Result);
-        //     }
-        //   }
-        // });
+        $.ajax({
+          type: "get",
+          url: mainurl + "/api/VerifyCode/Send?phone=" + phone,
+          success: function (data) {
+            if (data.Status == 1) {
+              layer.msg('发送成功');
+            } else {
+              layer.msg(data.Result);
+            }
+          }
+        });
       }
       new invokeSettime("#btn");
     }
   }
+
   // 注册并登陆
   function submitBtn() {
     var phone = $(".phone").val().trim();
     var code = $(".code").val().trim();
-    if(phone==""||code==""){
-      alert("请完善信息")
-    }else if(!/^1\d{10}$/.test(phone)){
-      alert("请检查手机号");
-    }else{
-      alert("登陆接口")
+    if (phone == "" || code == "") {
+      layer.msg("请完善信息")
+    } else if (!/^1\d{10}$/.test(phone)) {
+      layer.msg("请检查手机号");
+    } else {
+      $.ajax({
+        type: "get",
+        url: mainurl + "/api/EarthPush/Check?phone=" + phone,
+        success: function (data) {
+          if (data.Result == true) {
+            // layer.msg('手机号验证成功');
+            goToBind()
+          } else if(data.Result == false){
+            $(".layer").fadeIn();
+            $(".tipMsg").fadeIn()
+          }
+        },
+        error: function () {
+          layer.msg('网络异常');
+        }
+      });
+    }
+  }
+
+  // 取消：
+  function IKnow() {
+    $('body').css("overflow", "visible");
+    $(".layer").fadeOut();
+    $(".tipMsg").fadeOut()
+  }
+  // 去登录
+  function goToBind() {
+    var phone = $(".phone").val().trim();
+    var code = $(".code").val().trim();
+    if (phone == "" || code == "") {
+      layer.msg("请完善信息")
+    } else if (!/^1\d{10}$/.test(phone)) {
+      layer.msg("请检查手机号");
+    } else {
+      $.ajax({
+        type: "get",
+        url: mainurl + "/api/EarthPush/Login?phone=" + phone + "&code=" + code,
+        success: function (data) {
+          if (data.Status == 1) {
+            layer.msg("登录成功");
+            setCookie("token", data.Result)
+            setTimeout(() => {
+              window.location.href = "invite.html"
+            }, 1500);
+          } else {
+            layer.msg(data.Result);
+          }
+        },
+        error: function () {
+          layer.msg('网络异常');
+        }
+      });
     }
   }
 </script>

@@ -7,51 +7,150 @@
   <title>邀请日记</title>
   <link rel="stylesheet" href="./css/invite.css">
   <style>
+    /* 弹出层 二维码 */
+
+    .tipMsg {
+      position: fixed;
+      top: 18%;
+      left: calc(50% - 14rem);
+      z-index: 150;
+      width: 28rem;
+      /* height: 45rem; */
+      box-sizing: border-box;
+      border-radius: .5rem;
+      text-align: center;
+      background: #fff;
+      padding: 1rem;
+      box-sizing: border-box;
+      display: none;
+    }
+
+    .tipMsg h3,
+    .tipMsg .code {
+      font-size: 1.8rem;
+      color: #333;
+      text-align: center;
+    }
+
+    .qrCode {
+      width: 20rem;
+      height: 20rem;
+      border-radius: .5rem;
+      margin: 2rem auto;
+      position: relative;
+    }
+
+    #qrCode img {
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+    }
+
+    #qrCode canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .logoQr {
+      width: 5rem;
+      height: 5rem;
+      position: absolute;
+      top: calc(50% - 2.5rem);
+      left: calc(50% - 2.5rem);
+    }
+
+    .shareIcon {
+      overflow: hidden;
+      font-size: 1.3rem;
+      /* margin-top: 4.5rem; */
+    }
+
+    .shareIcon div {
+      float: left;
+      width: 33.33%;
+      text-align: center;
+    }
+
+    .shareIcon div img {
+      width: 6rem;
+      height: 6rem;
+    }
+
+    .layui-layer {
+      width: 16rem !important;
+      margin: 0 auto;
+    }
   </style>
 </head>
 
 <body>
-  <div class="tab-contain">
+  <div class="tab-contain" style="background-color: #F4F4F4;">
     <div class="banner">
       <div class="title_info">
         <div class="title_left">
           <p>共邀请</p>
-          <p>6
-            <span>人</span>
+          <p>
+            <span class="Count">0</span>
+            <span class="ren">人</span>
           </p>
         </div>
         <div class="title_right">
           <p>
             <br>
-            <span>邀请</span>
+            <span onclick="inviteBtn()">邀请</span>
           </p>
         </div>
       </div>
-      <!-- tab栏 -->
-      <ul id="tabs">
-        <li class="current">
-          <a href="#" title="tab1">全部</a>
-        </li>
-        <li>
-          <a href="#" title="tab2">待出场</a>
-        </li>
-        <li>
-          <a href="#" title="tab3">已出场</a>
-        </li>
-      </ul>
     </div>
-
+    <!-- tab栏 -->
+    <ul id="tabs">
+      <li class="current">
+        <a href="#" title="tab1">已邀请（
+          <span class='type1'>4</span>）</a>
+      </li>
+      <li>
+        <a href="#" title="tab2">已签约（
+          <span class='type2'>4</span>）</a>
+      </li>
+      <li>
+        <a href="#" title="tab3">已消费（
+          <span class='type3'>4</span>）</a>
+      </li>
+    </ul>
     <!-- 对应显示内容 -->
     <div id="content">
       <div id="tab1" class="item show">
         <ul class="ezStopList">
           <Li>
-            <div class="list_info">
-              <p class="list_left">
-                <span>18
-                  <br>8月</span>
+            <div class="list_left">
+              <p class="year">18</p>
+              <p class="month">8月</p>
+            </div>
+            <div class="list_right">
+              <p class="">
+                <span>15000000000</span>
               </p>
-              <p class="list_right">
+              <p class="">
+                <span>15000000000</span>
+              </p>
+              <p class="">
+                <span>15000000000</span>
+              </p>
+            </div>
+          </Li>
+          <Li>
+            <div class="list_left">
+              <p class="year">18</p>
+              <p class="month">7月</p>
+            </div>
+            <div class="list_right">
+              <p class="">
+                <span>15000000000</span>
+              </p>
+              <p class="">
+                <span>15000000000</span>
+              </p>
+              <p class="">
                 <span>15000000000</span>
               </p>
             </div>
@@ -67,12 +166,71 @@
         </ul>
       </div>
     </div>
+
+    <div class="layer"></div>
+    <div class="tipMsg">
+      <h3>邀请码</h3>
+      <p class="code"></p>
+      <div class="qrCode">
+        <div id="qrCode"></div>
+        <img class="logoQr" style="z-index:50;" src="./img/logored.png" alt="">
+        <p style="font-size: 1.2rem;margin-top: .5rem;">邀请好友扫二维码</p>
+      </div>
+      <div class="shareIcon">
+        <div class="shareImg">
+          <img src="./img/weixin.png" alt="">
+          <p>微信好友</p>
+        </div>
+        <div class="shareImg">
+          <img src="./img/pengyouquan.png" alt="">
+          <p>微信朋友圈</p>
+        </div>
+        <div class="shareImg">
+          <img src="./img/qq.png" alt="">
+          <p>QQ好友</p>
+        </div>
+      </div>
+    </div>
+    <div class="layer1">
+      <img style="width: 100%;" src="./img/share_text.png" alt="">
+    </div>
   </div>
 </body>
 <script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./layer/layer.js"></script>
+<script type="text/javascript" src="./js/jquery.qrcode.min.js"></script>
 <script src="./js/fontsize.js"></script>
 <script>
   $(function () {
+    if (!getCookie("token")) {
+      layer.msg('请先登录');
+      setTimeout(() => {
+        window.location.href = "login.html"
+      }, 2000);
+    } else {
+      $.ajax({
+        type: "get",
+        url: mainurl + "/api/EarthPush/GetMyDetail",
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("Authorization", getCookie("token"));
+        },
+        success: function (data) {
+          if (data.Status == 1) {
+            $(".Count").text(data.Result.Count)
+            $(".code").text(data.Result.InvitationCode)
+            var type1,type2,type3
+            // $(".type1").text(type1) 
+            // $(".type2").text(type2) 
+            // $(".type3").text(type3)
+          } else {
+            layer.msg(data.Result);
+          }
+        },
+        error: function () {
+          layer.msg('网络异常');
+        }
+      });
+    }
     $('#tabs a').click(function (e) {
       e.preventDefault();
       $('#tabs li').removeClass("current").removeClass("hoverItem");
@@ -90,11 +248,47 @@
     });
     var w = document.documentElement.clientWidth
     // console.log(document.documentElement.clientHeight)
-    var c_h = $(window).height() - 3 * (w / 37.5)
-    $("#content").css({
-      "min-height": c_h + "px"
-    })
+    var c_h = $(window).height() - 23 * (w / 37.5)
+    // $("#content").css({
+    //   "height": c_h + "px"
+    // })
 
   });
+
+  function inviteBtn() {
+    $(".layer").fadeIn()
+    $(".tipMsg").fadeIn()
+  }
+  $(".layer").click(function () {
+    $(this).fadeOut()
+    $(".tipMsg").fadeOut()
+  })
+  $(".layer1").click(function () {
+    $(this).fadeOut()
+  })
+  $(".shareImg").click(function () {
+    $(".layer1").fadeIn()
+  })
+  jQuery('#qrCode').qrcode({
+    render: "canvas", //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
+    text: "http://spsapp.spsing.com/content/activity/cmbc/inviteRegister.html?code=23232323", //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
+    width: "200", //二维码的宽度
+    height: "200", //二维码的高度
+    background: "#ffffff", //二维码的后景色
+    foreground: "#4a4a4a", //二维码的前景色
+    correctLevel: 0,
+    src: 'logo.png' //二维码中间的图片
+  });
+  // 从 canvas 提取图片 image
+  function convertCanvasToImage(canvas) {
+    //新Image对象，可以理解为DOM
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+    return image;
+  }
+  var mycanvas1 = document.getElementsByTagName('canvas')[0];
+  //将转换后的img标签插入到html中
+  var img = convertCanvasToImage(mycanvas1);
+  $('#qrCode').html(img);
 </script>
 <html>
