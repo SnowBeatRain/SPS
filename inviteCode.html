@@ -27,7 +27,7 @@
     </div>
     <div class="qrCode">
       <div id="qrCode"></div>
-      <img class="logoQr" style="z-index:50;" src="./images/logo.png" alt="">
+      <img class="logoQr" style="z-index:50;" src="./images/logored.png" alt="">
     </div>
     <div class="footer">
       <p>识别二维码完成注册
@@ -57,7 +57,7 @@
     token = window.location.href.split("token=")[1]
   }
   getInfo()
-
+  
   function getInfo() {
     $.ajax({
       type: 'get',
@@ -71,7 +71,8 @@
             width: "200", //二维码的宽度
             height: "200", //二维码的高度
             background: "#ffffff", //二维码的后景色
-            foreground: "#FFA922", //二维码的前景色
+            foreground: "#4a4a4a", //二维码的前景色
+            correctLevel:0,
             src: 'logo.png' //二维码中间的图片
           });
           //从 canvas 提取图片 image
