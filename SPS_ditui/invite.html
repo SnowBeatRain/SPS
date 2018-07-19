@@ -1,0 +1,100 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta name="author" content="SnowBeatRain">
+  <title>邀请日记</title>
+  <link rel="stylesheet" href="./css/invite.css">
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="tab-contain">
+    <div class="banner">
+      <div class="title_info">
+        <div class="title_left">
+          <p>共邀请</p>
+          <p>6
+            <span>人</span>
+          </p>
+        </div>
+        <div class="title_right">
+          <p>
+            <br>
+            <span>邀请</span>
+          </p>
+        </div>
+      </div>
+      <!-- tab栏 -->
+      <ul id="tabs">
+        <li class="current">
+          <a href="#" title="tab1">全部</a>
+        </li>
+        <li>
+          <a href="#" title="tab2">待出场</a>
+        </li>
+        <li>
+          <a href="#" title="tab3">已出场</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 对应显示内容 -->
+    <div id="content">
+      <div id="tab1" class="item show">
+        <ul class="ezStopList">
+          <Li>
+            <div class="list_info">
+              <p class="list_left">
+                <span>18
+                  <br>8月</span>
+              </p>
+              <p class="list_right">
+                <span>15000000000</span>
+              </p>
+            </div>
+          </Li>
+        </ul>
+      </div>
+      <div id="tab2" class="item">
+        <ul class="ezStopList">
+        </ul>
+      </div>
+      <div id="tab3" class="item">
+        <ul class="ezStopList">
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./js/fontsize.js"></script>
+<script>
+  $(function () {
+    $('#tabs a').click(function (e) {
+      e.preventDefault();
+      $('#tabs li').removeClass("current").removeClass("hoverItem");
+      $(this).parent().addClass("current");
+      $("#content div").removeClass("show");
+      $('#' + $(this).attr('title')).addClass('show');
+    });
+
+    $('#tabs a').hover(function () {
+      if (!$(this).parent().hasClass("current")) {
+        $(this).parent().addClass("hoverItem");
+      }
+    }, function () {
+      $(this).parent().removeClass("hoverItem");
+    });
+    var w = document.documentElement.clientWidth
+    // console.log(document.documentElement.clientHeight)
+    var c_h = $(window).height() - 3 * (w / 37.5)
+    $("#content").css({
+      "min-height": c_h + "px"
+    })
+
+  });
+</script>
+<html>

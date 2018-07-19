@@ -1,0 +1,133 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta name="author" content="SnowBeatRain">
+  <title>账号注册</title>
+  <link rel="stylesheet" href="./css/login.css">
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="form form_phone">
+      <p class="top_title">手机号</p>
+      <p class="bottom">
+        <span class="phone_left left">+86</span>
+        <input class="right phone" type="number" placeholder="手机号">
+      </p>
+    </div>
+    <div class="form form_code">
+      <p class="top_title">验证码</p>
+      <p class="bottom">
+        <input type="text" class="code left" placeholder="四位">
+        <span class="right get_code" id="btn" onclick="getYZ()">获取验证码</span>
+      </p>
+    </div>
+    <div class="footer">
+      <button onclick="submitBtn()">登录</button>
+    </div>
+  </div>
+</body>
+<script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./js/fontsize.js"></script>
+<script>
+  $(function () {
+    var openEye = false
+    $(".closeImg").click(function () {
+      openEye = !openEye;
+      if (openEye) {
+        $(".psw").attr("type", "text")
+        $(".closeImg").attr("src", "./img/eye_open.png")
+      } else {
+        $(".psw").attr("type", "password")
+        $(".closeImg").attr("src", "./img/eye_close.png")
+      }
+    })
+    // 设置默认高度
+    var w = document.documentElement.clientWidth
+    var c_h = $(window).height()
+    $(".container").css({
+      "min-height": c_h + "px"
+    })
+    // 获取焦点
+    $("input").focus(function () {
+      var formTag = $(this).parents(".form")[0]
+      $(formTag).css({
+        'border-bottom': '1px solid #c8161d'
+      })
+    })
+    // 失去焦点
+    $("input").blur(function () {
+      var formTag = $(this).parents(".form")[0]
+      $(formTag).css({
+        'border-bottom': '1px solid #bfbfbf'
+      })
+    });
+  })
+  // 获取验证码
+  function getYZ() {
+    var phone = $(".phone").val().trim();
+    if (phone == "") {
+      alert("请输入手机号");
+    } else if (!/^1\d{10}$/.test(phone)) {
+      alert("请检查手机号");
+    } else {
+      var countdown = 60;
+
+      function invokeSettime(obj) {
+        settime(obj);
+
+        function settime(obj) {
+          if (countdown == 0) {
+            $(obj).attr("disabled", false);
+            $(obj).html("获取验证码");
+            $(obj).css({
+              'background-color': '#ffa922;'
+            })
+            countdown = 60;
+            return;
+          } else {
+            $(obj).attr("disabled", true);
+            $(obj).html("重新获取(" + countdown + ")");
+            $(obj).css({
+              'background-color': '#9f9f9f'
+            })
+            countdown--;
+          }
+          setTimeout(function () {
+            settime(obj);
+          }, 1000);
+        }
+        // 获取验证嘛
+        // $.ajax({
+        //   type: "get",
+        //   url: mainurl + "/api/VerifyCode/Send?phone=" + phone,
+        //   success: function (data) {
+        //     if (data.Status == 1) {
+        //       alert(data.Result);
+        //     } else {
+        //       alert(data.Result);
+        //     }
+        //   }
+        // });
+      }
+      new invokeSettime("#btn");
+    }
+  }
+  // 注册并登陆
+  function submitBtn() {
+    var phone = $(".phone").val().trim();
+    var code = $(".code").val().trim();
+    if(phone==""||code==""){
+      alert("请完善信息")
+    }else if(!/^1\d{10}$/.test(phone)){
+      alert("请检查手机号");
+    }else{
+      alert("登陆接口")
+    }
+  }
+</script>
+<html>
