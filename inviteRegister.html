@@ -25,14 +25,15 @@
     </div>
     <div class="form_box">
       <div>
-        <input type="number" class="phone" placeholder="请输入手机号">
+        <input type="number" class="phone input" placeholder="请输入手机号">
       </div>
       <div>
-        <input type="text" class="code" placeholder="验证码">
-        <span class="get_code" id="btn" onclick="getYZ()">获取验证码</span>
+        <input type="text" class="code input" placeholder="验证码">
+        <!-- <span class="get_code" id="btn" onclick="getYZ()">获取验证码</span> -->
+        <input type="button" class="get_code" id="btn" onclick="getYZ()" value="获取验证码">
       </div>
       <div>
-        <input type="text" class="inviteCode" placeholder="请输入邀请码" disabled>
+        <input type="text" class="inviteCode input" placeholder="请输入邀请码" disabled>
       </div>
       <div>
         <button class="sub_btn submit_on" onclick="subBtn()">立即注册</button>
@@ -83,8 +84,13 @@
     syscouponid = "",
     islow = false; //是否是安卓低版本   不是
 
-  // var ExtensionCode = window.location.href.split("code=")[1]
-  var ExtensionCode = "83542261"
+  var ExtensionCode;
+  if (window.location.href.indexOf('&') > 0) {
+    ExtensionCode = window.location.href.split("code=")[1].split('&')[0]
+  } else {
+    ExtensionCode = window.location.href.split("code=")[1]
+  }
+  // var ExtensionCode = "83542261"
   $(".inviteCode").val(ExtensionCode)
   if (navigator.userAgent.indexOf('Android') > 0) {
     var phoneNum = navigator.userAgent.split('Android ')[1]
@@ -110,15 +116,17 @@
         function settime(obj) {
           if (countdown == 0) {
             $(obj).attr("disabled", false);
-            $(obj).html("获取验证码");
-            $(obj).css({
-              'background-color': '#ffa922;'
-            })
+            $(obj).val("获取验证码");
+            $(obj).removeAttr('style')
+
+            // $(obj).css({
+            //   'background-color': '#ffa922;!important'
+            // })
             countdown = 60;
             return;
           } else {
             $(obj).attr("disabled", true);
-            $(obj).html("(" + countdown + ") 秒再获取");
+            $(obj).val("(" + countdown + ") 秒再获取");
             $(obj).css({
               'background-color': '#a3a3a3'
             })
