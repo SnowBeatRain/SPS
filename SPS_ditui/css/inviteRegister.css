@@ -62,7 +62,7 @@
   border-radius: .5rem;
 }
 
-.form_box input {
+.form_box .input {
   padding-left: 2rem;
   box-sizing: border-box;
   background-image: url(../img/input_bg.png);
@@ -91,7 +91,9 @@
   font-size: 1.6rem;
   color: #fff;
   border-radius: .5rem;
+  border: none;
   background-color: #ffa922;
+  -webkit-appearance: none;
 }
 
 .sub_btn {

@@ -1,0 +1,183 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta name="author" content="SnowBeatRain">
+  <title>邀请日记</title>
+  <link rel="stylesheet" href="./css/inviteList.css">
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="tab-contain" style="background-color: #F4F4F4;">
+    <div class="banner">
+      <div class="title_info">
+        <div class="title_left">
+          <p>共邀请</p>
+          <p>
+            <span class="Count">0</span>
+            <span class="ren">人</span>
+          </p>
+        </div>
+        <div class="title_right">
+          <p>
+            <br>
+            <span onclick="inviteBtn()">邀请</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- tab栏 -->
+    <ul id="tabs">
+      <li class="current">
+        <a href="#" title="tab1">已邀请(
+          <span class='type1'></span>)</a>
+      </li>
+      <li>
+        <a href="#" title="tab2">已签约(
+          <span class='type2'></span>)</a>
+      </li>
+      <li>
+        <a href="#" title="tab3">已消费(
+          <span class='type3'></span>)</a>
+      </li>
+    </ul>
+    <!-- 对应显示内容 -->
+    <div id="content">
+      <div id="tab1" class="item show">
+        <ul class="ezStopList">
+          <!-- <Li>
+            <div class="list_left">
+              <p class="year">18</p>
+              <p class="month">8月</p>
+            </div>
+            <div class="list_right">
+              <p class="">
+                <span>15000000000</span>
+              </p>
+            </div>
+          </Li> -->
+        </ul>
+      </div>
+      <div id="tab2" class="item">
+        <ul class="ezStopList">
+        </ul>
+      </div>
+      <div id="tab3" class="item">
+        <ul class="ezStopList">
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./layer/layer.js"></script>
+<script src="./js/fontsize.js"></script>
+<script>
+  $(function () {
+    var InvitationCode;
+    if (!getCookie("token")) {
+      layer.msg('请先登录');
+      setTimeout(() => {
+        window.location.href = "login.html"
+      }, 2000);
+    } else {
+      getTabDetail(0)
+    }
+    $('#tabs a').click(function (e) {
+      e.preventDefault();
+      $('#tabs li').removeClass("current").removeClass("hoverItem");
+      $(this).parent().addClass("current");
+      $("#content div").removeClass("show");
+      $('#' + $(this).attr('title')).addClass('show');
+      if (this.title == 'tab1') {
+        getTabDetail(0)
+      } else if (this.title == 'tab2') {
+        getTabDetail(1)
+      } else if (this.title == 'tab3') {
+        getTabDetail(2)
+      }
+    });
+
+    $('#tabs a').hover(function () {
+      if (!$(this).parent().hasClass("current")) {
+        $(this).parent().addClass("hoverItem");
+      }
+    }, function () {
+      $(this).parent().removeClass("hoverItem");
+    });
+    // var w = document.documentElement.clientWidth
+    // console.log(document.documentElement.clientHeight)
+    // var c_h = $(window).height() - 23 * (w / 37.5)
+    // $("#content").css({
+    //   "height": c_h + "px"
+    // })
+  });
+
+  function inviteBtn() {
+    window.location.href = "invite.html?code=" + InvitationCode
+  }
+
+  // 根据tab 获取列表
+  function getTabDetail(e) {
+    $.ajax({
+      type: "get",
+      url: mainurl + "/api/EarthPush/GetMyDetail?type=" + e,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", getCookie("token"));
+      },
+      success: function (data) {
+        if (data.Status == 1) {
+          $(".Count").text(data.Result.AllCount)
+          $(".code").text(data.Result.InvitationCode)
+          InvitationCode = data.Result.InvitationCode
+
+          var type1, type2, type3;
+          type1 = data.Result.RegisterCount
+          type2 = data.Result.ContractCount
+          type3 = data.Result.ConsumptionCount
+          $(".type1").text(type1)
+          $(".type2").text(type2)
+          $(".type3").text(type3)
+
+          // for循环遍历列表
+          var list = data.Result.List;
+          var li = ""
+          for (let i = 0; i < list.length; i++) {
+            // 天列表
+            const lu = list[i].UserList;
+            if (lu.length < 1) {} else {
+              var u = ""
+              for (let j = 0; j < lu.length; j++) {
+                // 用户列表
+                const lul = lu[j];
+                u += '<p class=""><span>' + String(lul.Phone).substr(0, 3) + '****' + String(lul.Phone).substr(7) +
+                  '</span></p>'
+              }
+              li += '<Li><div class="list_left"><p class="year">' + list[i].Day + '</p><p class="month">' + list[
+                  i].Month + '月</p></div>' +
+                '<div class="list_right">' +
+                u +
+                '</div></Li>'
+            }
+          }
+          $(".ezStopList").html(li)
+
+        } else if (data.Status == 40001) {
+          layer.msg(data.Result);
+          setTimeout(() => {
+            window.location.href ="login.html"
+          }, 3000);
+        } else {
+          layer.msg(data.Result);
+        }
+      },
+      error: function () {
+        layer.msg('网络异常');
+      }
+    });
+  }
+</script>
+<html>
