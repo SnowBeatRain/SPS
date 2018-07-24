@@ -209,7 +209,7 @@
         success: function (data) {
           if (data.Result == true) {
             // layer.msg('手机号验证成功');
-            goToBind()
+            goToLogin()
           } else if (data.Result == false) {
             $(".layer").fadeIn();
             $(".tipMsg").fadeIn()
@@ -228,8 +228,15 @@
     $(".layer").fadeOut();
     $(".tipMsg").fadeOut()
   }
-  // 去登录
+  // 确定
   function goToBind() {
+    $('body').css("overflow", "visible");
+    $(".layer").fadeOut();
+    $(".tipMsg").fadeOut()
+    goToLogin()
+  }
+
+  function goToLogin() {
     var phone = $(".phone").val().trim();
     var code = $(".code").val().trim();
     if (phone == "" || code == "") {
